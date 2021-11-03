@@ -11,13 +11,13 @@ public class CliffCam : MonoBehaviour
 
     private void Start()
     {
-        cliffCam.enabled = false;
+        // cliffCam.enabled = false;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Trigger")
         {
-            cliffCam.enabled = true;
+            // cliffCam.enabled = true;
         followCam.Priority = 9;
         cliffCam.Priority = 10;
         }
@@ -27,7 +27,7 @@ public class CliffCam : MonoBehaviour
     {
         if (collision.tag == "Trigger")
         {
-            cliffCam.enabled = false;
+           // cliffCam.enabled = false;
             cliffCam.Priority = 9;
             followCam.Priority = 10;
         }
