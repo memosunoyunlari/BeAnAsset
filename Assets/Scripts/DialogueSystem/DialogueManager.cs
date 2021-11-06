@@ -42,7 +42,7 @@ public class DialogueManager : MonoBehaviour
     private DialogueVertexAnimator dialogueVertexAnimator;
     void Awake() {
 
-        
+        panelandText.SetActive(false);
         dialogueVertexAnimator = new DialogueVertexAnimator(textBox, audioSourceGroup);
 
         
@@ -66,14 +66,20 @@ public class DialogueManager : MonoBehaviour
             panelandText.SetActive(true);
             pressed = true;
             promptTextBox.SetActive(false);
-            PlayDialogue1();
+            StartCoroutine("startcliffeventandendit");
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && assetIN == true && pressed == true)
+        
+
+       
+        if (assetIN == true && pressed == false)
         {
-            pressed = false;
             promptTextBox.SetActive(true);
-            panelandText.SetActive(false);
+        }
+
+        if (assetIN == false)
+        {
+            promptTextBox.SetActive(false);
         }
     }
 
@@ -81,7 +87,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (collider2D.CompareTag("Trigger") && pressed == false)
         {
-            promptTextBox.SetActive(true);
+            
             assetIN = true;
         }
 
@@ -91,7 +97,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (collider2D.CompareTag("Trigger") && pressed == false)
         {
-            promptTextBox.SetActive(false);
+            
             assetIN = false;
         }
     }
@@ -119,11 +125,12 @@ public class DialogueManager : MonoBehaviour
     }
     IEnumerator startcliffeventandendit()
     {
-        yield return new WaitForSeconds(3f);
+        
         panelandText.SetActive(true);
         PlayDialogue(cliff);
         yield return new WaitForSeconds(10f);
         panelandText.SetActive(false);
+        pressed = false;
     }
 
 }

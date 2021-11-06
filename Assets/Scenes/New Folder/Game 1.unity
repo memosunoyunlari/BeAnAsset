@@ -10523,7 +10523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1760289997}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Events
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
