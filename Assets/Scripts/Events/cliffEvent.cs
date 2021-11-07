@@ -4,13 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class DialogueManager : MonoBehaviour
+public class cliffEvent : MonoBehaviour
 {
     // press E : Inspect input prompt
     public GameObject promptTextBox;
     private bool pressed;
     private bool assetIN;
-    private Vector3 promptOffset;
     
     
     //for the conversion
@@ -18,9 +17,10 @@ public class DialogueManager : MonoBehaviour
     
     // cliff event text anchor
     public Transform cliffEventLocation;
+    public Transform cliffPromptLocation;
     
-    // offset for the anchor - if needed;
-    private Vector2 offset;
+    
+    
     
     public GameObject panelandText;
     public TMP_Text textBox;
@@ -33,40 +33,44 @@ public class DialogueManager : MonoBehaviour
 
 
     [TextArea]
-    public string cliff;
-    [TextArea]
-    public string trappedwolf;
-    [TextArea]
-    public string guardpost;
+    public string text;
+    
 
     private DialogueVertexAnimator dialogueVertexAnimator;
     void Awake() {
 
-        panelandText.SetActive(false);
+        
         dialogueVertexAnimator = new DialogueVertexAnimator(textBox, audioSourceGroup);
 
         
         pressed = false;
-        promptOffset = new Vector2(0, 5f);
+        
 
 
     }
 
+    private void LateUpdate()
+    {
+        Vector3 screenPosEventText = Camera.main.WorldToScreenPoint(cliffEventLocation.position);
+        Vector3 screenPosPromptText = Camera.main.WorldToScreenPoint(cliffPromptLocation.position);
+        screenPosEventText.z = 0;
+        screenPosPromptText.z = 0;
+        promptTextBox.transform.position = screenPosPromptText;
+        transformPanelandText.position = screenPosEventText;
+        
+        
+    }
+
     private void Update()
     {
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(cliffEventLocation.position);
-      
-        screenPos.y = (Screen.height - screenPos.y);
         
-        transformPanelandText.position = screenPos;
-        promptTextBox.transform.position = screenPos - promptOffset;
 
         if (Input.GetKeyDown(KeyCode.E) && assetIN == true && pressed == false)
         {
             panelandText.SetActive(true);
             pressed = true;
             promptTextBox.SetActive(false);
-            StartCoroutine("startcliffeventandendit");
+            StartCoroutine("startEventandEndIt");
         }
 
         
@@ -80,6 +84,7 @@ public class DialogueManager : MonoBehaviour
         if (assetIN == false)
         {
             promptTextBox.SetActive(false);
+            
         }
     }
 
@@ -103,17 +108,10 @@ public class DialogueManager : MonoBehaviour
     }
 
     
-    private void PlayDialogue1() {
-        PlayDialogue(cliff);
-    }
+    
+    
 
-    private void PlayDialogue2() {
-        PlayDialogue(trappedwolf);
-    }
-
-    private void PlayDialogue3() {
-        PlayDialogue(guardpost);
-    }
+    
 
 
     private Coroutine typeRoutine = null;
@@ -123,14 +121,15 @@ public class DialogueManager : MonoBehaviour
         List<DialogueCommand> commands = DialogueUtility.ProcessInputString(message, out string totalTextMessage);
         typeRoutine = StartCoroutine(dialogueVertexAnimator.AnimateTextIn(commands, totalTextMessage, typingClip, null));
     }
-    IEnumerator startcliffeventandendit()
+    IEnumerator startEventandEndIt()
     {
         
         panelandText.SetActive(true);
-        PlayDialogue(cliff);
-        yield return new WaitForSeconds(10f);
+        PlayDialogue(text);
+        yield return new WaitForSeconds(6f);
         panelandText.SetActive(false);
         pressed = false;
     }
+
 
 }
