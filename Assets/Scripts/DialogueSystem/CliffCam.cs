@@ -18,8 +18,8 @@ public class CliffCam : MonoBehaviour
         if (collision.tag == "Trigger")
         {
         
-        followCam.Priority = 9;
-        cliffCam.Priority = 10;
+        followCam.Priority = 8;
+        cliffCam.Priority = 15;
         }
     }
 
@@ -28,8 +28,8 @@ public class CliffCam : MonoBehaviour
         if (collision.tag == "Trigger")
         {
            
-            cliffCam.Priority = 9;
-            followCam.Priority = 10;
+            cliffCam.Priority = 8;
+            followCam.Priority = 15;
         }
             
     }
