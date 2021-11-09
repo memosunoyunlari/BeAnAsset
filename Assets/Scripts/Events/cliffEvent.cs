@@ -49,7 +49,7 @@ public class cliffEvent : MonoBehaviour
 
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         Vector3 screenPosEventText = Camera.main.WorldToScreenPoint(cliffEventLocation.position);
         Vector3 screenPosPromptText = Camera.main.WorldToScreenPoint(cliffPromptLocation.position);

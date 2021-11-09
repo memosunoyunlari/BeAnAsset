@@ -3,9 +3,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Cinemachine;
 
 public class guardEvent : MonoBehaviour
 {
+    // virtual cam
+    public CinemachineVirtualCamera followCam;
+
     // press E : Inspect input prompt
     public GameObject promptTextBox;
     private bool pressed;
@@ -52,7 +56,7 @@ public class guardEvent : MonoBehaviour
 
     }
 
-    public void LateUpdate()
+    public void FixedUpdate()
     {
         Vector3 screenPosEventText = Camera.main.WorldToScreenPoint(guardEventLocation.position);
         Vector3 screenPosPromptText = Camera.main.WorldToScreenPoint(guardPromptLocation.position);
