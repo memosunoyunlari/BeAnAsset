@@ -1,37 +1,31 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using Cinemachine;
 
-public class guardEvent : MonoBehaviour
+public class campEvent : MonoBehaviour
 {
-    // virtual cam
-    public CinemachineVirtualCamera followCam;
-
     // press E : Inspect input prompt
     public GameObject promptTextBox;
     private bool pressed;
     private bool assetIN;
-    
-    
-    
+
+
     //for the conversion
     public Transform transformPanelandText;
-    
+
     // cliff event text anchor
-    public Transform guardEventLocation;
-    public Transform guardPromptLocation;
-    
-    
-    
+    public Transform campEventLocation;
+    public Transform campPromptLocation;
+
+
+
+
     public GameObject panelandText;
     public TMP_Text textBox;
     public AudioClip typingClip;
     public AudioSourceGroup audioSourceGroup;
-
-    
 
     // to get players ability to move while the text flows.
     public GameObject player;
@@ -40,26 +34,26 @@ public class guardEvent : MonoBehaviour
 
     [TextArea]
     public string text;
-    
+
 
     private DialogueVertexAnimator dialogueVertexAnimator;
-    void Awake() {
+    void Awake()
+    {
 
-        promptTextBox.SetActive(false);
 
         dialogueVertexAnimator = new DialogueVertexAnimator(textBox, audioSourceGroup);
 
-        
+
         pressed = false;
-        
+
 
 
     }
 
-    public void FixedUpdate()
+    private void FixedUpdate()
     {
-        Vector3 screenPosEventText = Camera.main.WorldToScreenPoint(guardEventLocation.position);
-        Vector3 screenPosPromptText = Camera.main.WorldToScreenPoint(guardPromptLocation.position);
+        Vector3 screenPosEventText = Camera.main.WorldToScreenPoint(campEventLocation.position);
+        Vector3 screenPosPromptText = Camera.main.WorldToScreenPoint(campPromptLocation.position);
         screenPosEventText.z = 0;
         screenPosPromptText.z = 0;
         promptTextBox.transform.position = screenPosPromptText;
@@ -68,12 +62,9 @@ public class guardEvent : MonoBehaviour
 
     }
 
-    public void Update()
+    private void Update()
     {
 
-        
-        
-        
 
         if (Input.GetKeyDown(KeyCode.E) && assetIN == true && pressed == false)
         {
@@ -83,9 +74,9 @@ public class guardEvent : MonoBehaviour
             StartCoroutine("startEventandEndIt");
         }
 
-        
 
-       
+
+
         if (assetIN == true && pressed == false)
         {
             promptTextBox.SetActive(true);
@@ -94,6 +85,7 @@ public class guardEvent : MonoBehaviour
         if (assetIN == false)
         {
             promptTextBox.SetActive(false);
+
         }
     }
 
@@ -101,9 +93,8 @@ public class guardEvent : MonoBehaviour
     {
         if (collider2D.CompareTag("Trigger") && pressed == false)
         {
-            
+
             assetIN = true;
-            
         }
 
     }
@@ -112,20 +103,21 @@ public class guardEvent : MonoBehaviour
     {
         if (collider2D.CompareTag("Trigger") && pressed == false)
         {
-            
+
             assetIN = false;
         }
     }
 
-    
-    
-    
 
-    
+
+
+
+
 
 
     private Coroutine typeRoutine = null;
-    void PlayDialogue(string message) {
+    void PlayDialogue(string message)
+    {
         this.EnsureCoroutineStopped(ref typeRoutine);
         dialogueVertexAnimator.textAnimating = false;
         List<DialogueCommand> commands = DialogueUtility.ProcessInputString(message, out string totalTextMessage);
@@ -133,12 +125,12 @@ public class guardEvent : MonoBehaviour
     }
     IEnumerator startEventandEndIt()
     {
-        
+
         panelandText.SetActive(true);
         PlayDialogue(text);
         yield return new WaitForSeconds(6f);
         panelandText.SetActive(false);
-        pressed = false;
+
     }
 
 
