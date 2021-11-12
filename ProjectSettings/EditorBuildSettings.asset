@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Cutscene & Menu.unity
     guid: fe2d10aec0c217144be08214d62545b6
   - enabled: 1
-    path: Assets/Scenes/New Folder/Game 1.unity
+    path: Assets/Scenes/Gamey Parts/Game 1.unity
     guid: 69b40084ed6d26e40926947458eab9f5
   m_configObjects: {}
