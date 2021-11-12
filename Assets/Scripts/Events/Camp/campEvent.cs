@@ -28,7 +28,7 @@ public class campEvent : MonoBehaviour
     public AudioSourceGroup audioSourceGroup;
 
     // to get players ability to move while the text flows.
-    public GameObject player;
+    
 
 
 

@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Cutscene & Menu.unity
-    guid: fe2d10aec0c217144be08214d62545b6
+    path: Assets/Scenes/Less Gamey Parts ie. main menu - even though it is interactive/BriefingandMainMenu.unity
+    guid: c520bd8149ff5074ab7c29b5e2844635
   - enabled: 1
     path: Assets/Scenes/Gamey Parts/Game 1.unity
     guid: 69b40084ed6d26e40926947458eab9f5

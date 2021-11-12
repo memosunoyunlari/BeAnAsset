@@ -7,26 +7,31 @@ public class MainMenuSceneLoader : MonoBehaviour
 {
 
     public Animator animator;
+    public GameObject firstFrame;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         
     }
-    public void OnTriggerEnter2D(Collider2D other)
+    
+    public void clicks()
     {
-        if (other.tag == "shredder")
-        {
-
-            StartCoroutine(AnimationandChange());
-
-
-        }
+        Debug.Log("It be clicking");
     }
 
+    public void teleAndSceneChange()
+    {
+        StartCoroutine("AnimationandChange");
+    }
     IEnumerator AnimationandChange()
     {
-        animator.GetComponent<Animator>().SetTrigger("FadeIn");
+        firstFrame.SetActive(false);
+        Debug.Log("pushed it");
         yield return new WaitForSeconds(2f);
+        animator.SetTrigger("tele");
+        Debug.Log("teled it");
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
     }
