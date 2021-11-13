@@ -3,18 +3,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Cinemachine;
 
 public class Briefing : MonoBehaviour
 {
  
+    public Transform panelAndText;
     public TMP_Text textBox;
     public AudioClip typingClip;
     public AudioSourceGroup audioSourceGroup;
 
-    // to get players ability to move while the text flows.
+    public Transform eventLocation;
 
-
-
+    public CinemachineVirtualCamera buttonCam;
+    public CinemachineVirtualCamera textCam;
 
     [TextArea]
     public string text1;
@@ -26,9 +28,16 @@ public class Briefing : MonoBehaviour
     {
 
         dialogueVertexAnimator = new DialogueVertexAnimator(textBox, audioSourceGroup);
-
+        StartCoroutine("startEventandEndIt");
+        
     }
 
+    private void FixedUpdate()
+    {
+        Vector3 screenPosEventText = Camera.main.WorldToScreenPoint(eventLocation.position);
+        screenPosEventText.z = 0;
+        panelAndText.position = screenPosEventText;
+    }
 
     private Coroutine typeRoutine = null;
     void PlayDialogue(string message)
@@ -40,13 +49,16 @@ public class Briefing : MonoBehaviour
     }
     IEnumerator startEventandEndIt()
     {
-        textBox.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1);
+        panelAndText.gameObject.SetActive(true);
         yield return new WaitForSeconds(2);
         PlayDialogue(text1);
         yield return new WaitForSeconds(6);
         PlayDialogue(text2);
         yield return new WaitForSeconds(6);
-        textBox.gameObject.SetActive(false);
+        panelAndText.gameObject.SetActive(false);
+        buttonCam.Priority = 11;
+        textCam.Priority = 10;
 
     }
 
