@@ -7,7 +7,7 @@ public class ScreenRatioSetter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetRatio(9, 16);
+        SetRatio(16, 9);
     }
     void SetRatio(float w, float h)
     {

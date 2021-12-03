@@ -53,9 +53,9 @@ public class Briefing : MonoBehaviour
         panelAndText.gameObject.SetActive(true);
         yield return new WaitForSeconds(2);
         PlayDialogue(text1);
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(12);
         PlayDialogue(text2);
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(10);
         panelAndText.gameObject.SetActive(false);
         buttonCam.Priority = 11;
         textCam.Priority = 10;
