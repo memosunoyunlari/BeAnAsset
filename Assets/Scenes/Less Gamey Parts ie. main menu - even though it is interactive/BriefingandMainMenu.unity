@@ -330,7 +330,9 @@ MonoBehaviour:
   buttonCam: {fileID: 602595825}
   textCam: {fileID: 604644840}
   text1: '       The mine that men had founded near the pretiosus layer has started
-    to use signal distruptors for possible satelitte-based recons.'
+    to use signal distruptors for possible satelitte-based recons. An action that
+    has been long awaited by the most of the council and we have come up with a plan
+    that includes your team. '
   text2: '      You have the approval from the council to send Asset 004 for a close
     recon with A032 Protocol. May your and your asset''s service be valuable for
     the MPA.'
@@ -767,6 +769,7 @@ GameObject:
   - component: {fileID: 820354853}
   - component: {fileID: 820354852}
   - component: {fileID: 820354855}
+  - component: {fileID: 820354856}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -873,6 +876,18 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &820354856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820354851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bb26fae210f6a44ca555b58f8ebe87f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1508029063 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6983204369230876891, guid: 8d8823172b3c7194e895d893056671ec, type: 3}

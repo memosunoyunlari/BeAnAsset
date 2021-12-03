@@ -126,7 +126,7 @@ public class cliffEvent : MonoBehaviour
         
         panelandText.SetActive(true);
         PlayDialogue(text);
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(10);
         panelandText.SetActive(false);
         
     }
